@@ -6,7 +6,7 @@ import re,base64
 root=Path(__file__).resolve().parents[1]/'dist'
 html=(root/'index.html').read_text()
 css=(root/'style.css').read_text()
-js='\n'.join((root/f).read_text().replace('export const ','const ').replace('export function ','function ') for f in ('content.js','chemistry.js'))
+js='\n'.join((root/f).read_text().replace('export const ','const ').replace('export function ','function ') for f in ('content.js','chemistry.js','discoveries.js'))
 js+='\n'+re.sub(r'^import .*?;\s*$', '', (root/'app.js').read_text(), flags=re.M)
 html=re.sub(r'<link rel="stylesheet" href="\./style.css">','<style>'+css+'</style>',html)
 html=html.replace('<script type="module" src="./app.js"></script>','<script>'+js+'</script>')
